@@ -8,5 +8,5 @@ run_circos.sh -o processed data dir
   2)CNV : *ratio.txt file from CAVATICA somatic calling pipeline*
   3)SV : *sv.vcf file from CAVATICA somatic calling pipleine*
   
-This script will run sv2tsv.pl and freec2circos.pl internally to create circos tracks from CNV and SV respectively. For     mutation track we filter genes with the following annotation Nonsense/ Missense/Nonstop/ Frame_Shift/ Splice_Site in the Variant classification column of maf files
+This script will run create_circos_config_run.pl,sv2tsv.pl and freec2circos.pl internally to create circos tracks from CNV and SV respectively. For     mutation track we filter genes with the following annotation Nonsense/ Missense/Nonstop/ Frame_Shift/ Splice_Site in the Variant classification column of maf files
 
