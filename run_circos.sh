@@ -52,6 +52,7 @@ for file in $(ls $output_dir/CNV/*ratio.txt);do perl freec2circos.pl -f $file -p
 for file in $(ls $output_dir/SV/*vcf);do perl sv2tsv.pl $file >$output_dir/SV/$(basename $file .vcf).circos.txt;done
 
 # run circos 
+mkdir $output_dir/Circos
 for file in $(ls $output_dir/SV/*.sv.vcf); do name=$(basename $file .sv.vcf); perl create_circos_config_run.pl $output_dir/CNV/$name*circos.txt $output_dir/SV/$name*circos.txt $name $output_dir/Circos $output_dir/somatic/$name*circos.txt;done  
 
 
