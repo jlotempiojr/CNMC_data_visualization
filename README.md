@@ -11,7 +11,8 @@ run_circos.sh -o processed data dir -r run_info
   The runinfo file should have the following parameters:<br />
   CIRCOS_PATH = <CIRCOS_PATH> <br />
   KARYOTYPE = <CIRCOS_PATH/data/karyotype/karyotype.human.hg19.txt> <br />
-  
+ 
+  Download the circos plot main code, fonts, global configuration and an example following the instructions in the link: http://circos.ca/software/download/
 
 This script will run create_circos_config_run.pl,sv2tsv.pl and freec2circos.pl internally to create circos tracks from CNV and SV respectively. For the mutation track we filter genes with the following annotation Nonsense/ Missense/Nonstop/ Frame_Shift/ Splice_Site in the Variant classification column of maf files
 
