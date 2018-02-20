@@ -12,6 +12,7 @@ cat << EOF
 
 EOF
 }
+echo "Please check if the samples in somatic/CNV and SV folders follow the same naming convention"
 echo "Options specified: $@"
 
 while getopts ":o:r:h" OPTION; do
@@ -32,14 +33,13 @@ done
 echo $output_dir
 source $run_info
 
-if [[ -z "$output_dir" ]]
+if [[ -z "$output_dir" || -z "$run_info"  ]]
 then
         echo "Must provide at least required options. See output file for usage."
         usage
         exit 1;
 fi
 
-##source $run_info##
 
 # filter somatic calls
 for file in $(ls $output_dir/somatic/*eff.maf);do head -2 $file > $output_dir/somatic/$(basename $file .eff.maf).filtered.txt; awk -F "\t" '{if($9~/Nonsense/ || $9 ~/Missense/ || $9~/Nonstop/ || $9 ~/Frame_Shift/ || $9 ~/Splice_Site/) print "hs"$5"\t"$6"\t"$7"\t"$1"_"$37}' $file> $output_dir/somatic/$(basename $file .eff.maf).circos.txt;done
