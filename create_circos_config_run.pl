@@ -17,7 +17,7 @@ open OUT,">","$output" or die "opening file: $output";
 my $gene_list=$ARGV[4];
 
 print OUT "
-karyotype=/Users/gaonkark/Documents/Cole_HCC/SV_data/circos_runs/karyotype.human.hg19.txt
+karyotype=$KARYOTYPE
 show_ticks=yes
 show_tick_lables=yes
 bands=yes
@@ -161,4 +161,4 @@ chromosomes_display_default = yes
 close OUT;
 
 
-`/Users/gaonkark/Downloads/circos-0.69-6/bin/circos -conf $WORK_DIR/$output_name.conf -png -outputfile $output_name.png -outputdir $WORK_DIR`;
+`$CIRCOS_PATH/bin/circos -conf $WORK_DIR/$output_name.conf -png -outputfile $output_name.png -outputdir $WORK_DIR`;
