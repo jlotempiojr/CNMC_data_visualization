@@ -15,3 +15,17 @@ run_circos.sh -o processed data dir -r run_info
 
 This script will run create_circos_config_run.pl,sv2tsv.pl and freec2circos.pl internally to create circos tracks from CNV and SV respectively. For the mutation track we filter genes with the following annotation Nonsense/ Missense/Nonstop/ Frame_Shift/ Splice_Site in the Variant classification column of maf files
 
+
+To generate oncoprint:
+1) Annotate genes with snp and cnv 
+2) Filter to genes of interest
+  Format for snp_count_file:<br />
+  101 H3F3  SNP<br />
+  \<sample>  \<gene>  \<mutation><br />
+  Format for cnv_count_file:<br />
+  101 H3F3  gain<br />
+  \<sample>  \<gene>  \<copy number><br />
+  <br />
+  
+  Run  <br />
+  Rscript oncoprint_cmnc.R snp_file cnv_file sample_key clinical_meta_data working dir
