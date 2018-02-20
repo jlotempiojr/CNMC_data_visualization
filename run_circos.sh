@@ -4,9 +4,9 @@
 usage ()
 {
 cat << EOF
-##      run_circos.sh -o secondary output directory
+##      run_circos.sh -o secondary output directory -r run_info file
 ##      -o      <processed data parent directory>
-##      -r      <Not needed yet, may need run_info if we want to change the criteria for filtering>
+##      -r      <run_info file>
 ##      -h      <help>
 
 
@@ -14,11 +14,12 @@ EOF
 }
 echo "Options specified: $@"
 
-while getopts ":o:h" OPTION; do
+while getopts ":o:r:h" OPTION; do
   case $OPTION in
         h) usage
         exit ;;
         o) output_dir=$OPTARG ;;
+        r) run_info=$OPTARG ;;
         \?) echo "Invalid option: -$OPTARG. See output file for usage."
        usage
        exit ;;
@@ -29,7 +30,7 @@ while getopts ":o:h" OPTION; do
 done
 
 echo $output_dir
-
+source $run_info
 
 if [[ -z "$output_dir" ]]
 then
