@@ -1,4 +1,4 @@
-# CNMC_viz
+# CNMC visualization
 
 To generate circos plots:
 run_circos.sh -o processed data dir -r run_info
