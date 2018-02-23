@@ -17,7 +17,7 @@ run_circos.sh -o processed data dir -r run_info
 This script will run create_circos_config_run.pl,sv2tsv.pl and freec2circos.pl internally to create circos tracks from CNV and SV respectively. For the mutation track we filter genes with the following annotation Nonsense/ Missense/Nonstop/ Frame_Shift/ Splice_Site in the Variant classification column of maf files
 
 
-To generate oncoprint:
+To create oncoprint:
 1) Annotate genes with snp and cnv 
 2) Filter to genes of interest
   Format for snp_count_file:<br />
@@ -30,3 +30,11 @@ To generate oncoprint:
   
   Run  <br />
   Rscript oncoprint_cmnc.R snp_file cnv_file sample_key clinical_meta_data working dir
+
+To create mutual exclusivity plots:
+1) Create file with the following columns using *maf files 
+   filename\tGene\tcount
+   count should have levels 0= mutation absent; 1= mutation present
+   
+Run <br />
+ Rscript mutual\_exclusivity.R <file>
