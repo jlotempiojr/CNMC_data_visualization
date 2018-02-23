@@ -66,7 +66,7 @@ res$pvalue <- as.numeric(as.character(res$pvalue))
 res <- cbind(res,fdr=p.adjust(res$pvalue,"fdr"))
 
 # change the FDR in labels for plotting
-res$stars <- cut(res$fdr, breaks=c(-Inf, 0.001, 0.01, 0.1, Inf), label=c("***", "**", "*", ""))
+res$stars <- cut(res$fdr, breaks=c(-Inf, 0.001, 0.05, 0.1, Inf), label=c("***", "**", "*", ""))
 
 # plot with ggplot 2
 require(ggplot2)
