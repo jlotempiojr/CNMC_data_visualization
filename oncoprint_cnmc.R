@@ -32,12 +32,12 @@ merged_dat<-merge(snp_count,cnv_count,by=c("sampleID","cavaticaID","gene"))
 merged_dat$onco <- apply( merged_dat[ , c(4,5) ] , 1 , paste , collapse = ";" )
 gene_matrix<-acast(merged_dat,gene~sampleID,value.var = "onco")
 
-Anno_sample<-final_clinical_dipg[which(final_clinical_dipg$Sample_ID %in% sample_key$sampleID),c(5,6,8,9,10,11,13,14)]
+Anno_sample<-final_clinical_dipg[which(final_clinical_dipg$Sample_ID %in% sample_key$sampleID),c(5,6,8,9,16)]
 
 
 #sample_col<-rainbow(length(colnames(gene_matrix)))
 #names(sample_col)<-colnames(gene_matrix)
-ha=HeatmapAnnotation(df=Anno_sample)
+ha=HeatmapAnnotation(df=Anno_sample,gp=gpar(col="white") ,col=list(Grade_dat=c("3"="pink","4"="purple"),Location_site=c("Pons"="green","Midline"="darkgreen","Thalamus"="yellowgreen")))
 #ha = HeatmapAnnotation( df= data.frame(subjectID=colnames(gene_matrix),age=runif(length(colnames(gene_matrix)),min=0,max=10)))
 #draw(ha, 1:2)
 ha_height = max_text_height(colnames(Anno_sample))
@@ -47,6 +47,7 @@ tiff(filename)
 col = c(SNP = "darkgreen",DEL= "darkgreen",INS="darkgreen", gain="red", loss="blue")
 oncoPrint(gene_matrix, get_type = function(x) strsplit(x, ";")[[1]],
           alter_fun = list(
+            background = function(x, y, w, h) grid.rect(x, y, w, h, gp = gpar(fill = "white")),
             gain = function(x, y, w, h) grid.rect(x, y, w*0.2, h*0.5, gp = gpar(fill = col["gain"],col = col["gain"])),
             loss = function(x, y, w, h) grid.rect(x, y, w*0.2, h*0.5, gp = gpar(fill = col["loss"],col = col["loss"])),
             SNP = function(x, y, w, h) grid.rect(x, y, w*0.5, h*0.2, gp = gpar(fill = col["SNP"], col = NA)),
